@@ -1,6 +1,5 @@
 # main.py
-from database import Database
-import json
+from clases.collection import Collection
 
 def mostrar_menu():
     print("\n--- Base de Datos Documental ---")
@@ -13,26 +12,30 @@ def mostrar_menu():
     return input("Seleccione una opción: ")
 
 def main():
-    db = Database("MiBaseDeDatos")
+    db = {}  # Diccionario para almacenar las colecciones
 
     while True:
         opcion = mostrar_menu()
         
         if opcion == "1":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            db.create_collection(nombre_coleccion)
+            db[nombre_coleccion] = Collection(nombre_coleccion)
             print(f"Colección '{nombre_coleccion}' creada.")
         
         elif opcion == "2":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            collection = db.get_collection(nombre_coleccion)
-            ruta_csv = input("Ingrese la ruta del archivo CSV: ")
-            collection.import_csv(nombre_coleccion, ruta_csv)
+            coleccion = db.get(nombre_coleccion)
+            if coleccion:
+                ruta_csv = input("Ingrese la ruta del archivo CSV: ")
+                coleccion.import_csv(ruta_csv)
+                print(f"Datos importados a la colección '{nombre_coleccion}'.")
+            else:
+                print(f"La colección '{nombre_coleccion}' no existe.")
         
         elif opcion == "3":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            doc_id = input("Ingrese el ID del documento: ")
-            coleccion = db.get_collection(nombre_coleccion)
+            doc_id = int(input("Ingrese el ID del documento: "))
+            coleccion = db.get(nombre_coleccion)
             if coleccion:
                 documento = coleccion.get_document(doc_id)
                 if documento:
@@ -41,27 +44,32 @@ def main():
                 else:
                     print("Documento no encontrado.")
             else:
-                print(f"Colección '{nombre_coleccion}' no encontrada.")
+                print(f"La colección '{nombre_coleccion}' no existe.")
         
         elif opcion == "4":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            doc_id = input("Ingrese el ID del documento a eliminar: ")
-            coleccion = db.get_collection(nombre_coleccion)
+            doc_id = int(input("Ingrese el ID del documento a eliminar: "))
+            coleccion = db.get(nombre_coleccion)
             if coleccion:
                 coleccion.delete_document(doc_id)
+                print(f"Documento con ID {doc_id} eliminado.")
+            else:
+                print(f"La colección '{nombre_coleccion}' no existe.")
         
         elif opcion == "5":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
-            coleccion = db.get_collection(nombre_coleccion)
+            coleccion = db.get(nombre_coleccion)
             if coleccion:
                 documentos = coleccion.list_documents()
                 if documentos:
                     print("\n--- Lista de Documentos ---")
-                    for doc in documentos:
+                    for doc in documentos.values():
                         print(doc)
                         print("-----------")
                 else:
                     print("No hay documentos en la colección.")
+            else:
+                print(f"La colección '{nombre_coleccion}' no existe.")
         
         elif opcion == "6":
             print("Saliendo del programa.")
