@@ -1,4 +1,5 @@
 from clases.document import Document
+from clases.str2doc import Str2Dic
 
 class Collection:
     
