@@ -27,8 +27,13 @@ def main():
             coleccion = db.get(nombre_coleccion)
             if coleccion:
                 ruta_csv = input("Ingrese la ruta del archivo CSV: ")
-                coleccion.import_csv(ruta_csv)
-                print(f"Datos importados a la colección '{nombre_coleccion}'.")
+                try:
+                    coleccion.import_csv(ruta_csv)
+                    print(f"Datos importados a la colección '{nombre_coleccion}'.")
+                except FileNotFoundError:
+                    print(f"El archivo '{ruta_csv}' no se encontró. Verifique la ruta.")
+                except ValueError as e:
+                    print(f"Error al importar datos: {e}")
             else:
                 print(f"La colección '{nombre_coleccion}' no existe.")
         
