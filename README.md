@@ -43,29 +43,6 @@ TP_POO/
 
 ---
 
-## **Requisitos Previos**
-
-Antes de ejecutar el programa, asegúrate de que tienes lo siguiente:
-1. Python instalado (versión 3.8 o superior).
-2. Una carpeta llamada `archivos` con al menos un archivo CSV de ejemplo (`basededatos.csv` o `ejemplo30.csv`).
-
----
-
-## **Cómo Ejecutar el Proyecto**
-
-1. **Clona el repositorio o copia el proyecto en tu computadora.**
-2. Navega hasta la carpeta principal del proyecto:
-   ```bash
-   cd TP_POO
-   ```
-3. Ejecuta el archivo `main.py`:
-   ```bash
-   python main.py
-   ```
-4. Sigue las instrucciones del menú para interactuar con las colecciones.
-
----
-
 ## **Funciones Principales**
 
 ### **1. Crear una Colección**
@@ -73,7 +50,7 @@ Antes de ejecutar el programa, asegúrate de que tienes lo siguiente:
 
 ### **2. Importar un Archivo CSV**
 - Selecciona la opción 2 para importar datos desde un archivo CSV.
-- Puedes especificar un nombre para la colección o usar el nombre predeterminado.
+- Puedes especificar un nombre para la colección.
 
 ### **3. Buscar un Documento**
 - Selecciona la opción 3 y proporciona el ID del documento que deseas buscar.
@@ -85,27 +62,3 @@ Antes de ejecutar el programa, asegúrate de que tienes lo siguiente:
 - Selecciona la opción 5 para listar todos los documentos de una colección.
 
 ---
-
-## **Ejemplo de Archivo CSV**
-
-El archivo CSV debe tener la siguiente estructura:
-
-```
-Nombre,Apellido,Edad,Email,Telefono
-Juan,Perez,30,juan.perez@gmail.com,011-1234-5678
-Ana,Martinez,28,ana.martinez@gmail.com,011-8765-4321
-```
-
----
-
-## **Pruebas Sugeridas**
-
-1. Importa un archivo CSV usando la opción 2 del menú.
-2. Busca un documento con el ID 1 usando la opción 3.
-3. Lista todos los documentos importados con la opción 5.
-4. Elimina un documento con la opción 4 y verifica que ya no aparece en la lista.
-
----
-
-## **Nota Final**
-Este proyecto fue desarrollado como parte del aprendizaje en programación. Agradezco cualquier comentario o sugerencia del profesor.
