@@ -36,6 +36,8 @@ def main():
                     print(f"Error al importar datos: {e}")
             else:
                 print(f"La colección '{nombre_coleccion}' no existe.")
+                
+                
         
         elif opcion == "3":
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
